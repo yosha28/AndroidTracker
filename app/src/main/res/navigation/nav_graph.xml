@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/nav_graph"
+	app:startDestination="@id/authorizationFragment">
+
+	<fragment
+		android:id="@+id/authorizationFragment"
+		android:name="com.example.androidtrackerexm.Screens.AuthorizationFragment"
+		android:label="fragment_authorization"
+		tools:layout="@layout/fragment_authorization" >
+		<action
+			android:id="@+id/action_authorizationFragment_to_registrationFragment"
+			app:destination="@id/registrationFragment" />
+		<action
+			android:id="@+id/action_authorizationFragment_to_mapFragment"
+			app:destination="@id/mapFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/registrationFragment"
+		android:name="com.example.androidtrackerexm.Screens.RegistrationFragment"
+		android:label="fragment_registration"
+		tools:layout="@layout/fragment_registration" >
+		<action
+			android:id="@+id/action_registrationFragment_to_mapFragment"
+			app:destination="@id/mapFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/mapFragment"
+		android:name="com.example.androidtrackerexm.Screens.MapFragment"
+		android:label="Map" >
+		<action
+			android:id="@+id/action_mapFragment_to_historyFragment"
+			app:destination="@id/historyFragment" />
+		<action
+			android:id="@+id/action_mapFragment_to_authorizationFragment"
+			app:destination="@id/authorizationFragment" />
+	</fragment>
+	<fragment
+		android:id="@+id/historyFragment"
+		android:name="com.example.androidtrackerexm.Screens.HistoryFragment"
+		android:label="History"
+		tools:layout="@layout/fragment_history" >
+		<action
+			android:id="@+id/action_historyFragment_to_mapFragment"
+			app:destination="@id/mapFragment" />
+		<action
+			android:id="@+id/action_historyFragment_to_authorizationFragment"
+			app:destination="@id/authorizationFragment"
+			app:popUpToInclusive="false" />
+	</fragment>
+</navigation>

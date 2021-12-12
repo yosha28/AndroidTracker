@@ -1,0 +1,28 @@
+<resources>
+	<string name="app_name">AndroidTrackerEXM</string>
+
+	<string name="google_maps_key">AIzaSyC11r7uOS-MNTj_QpKypQUHi0XIz88wzPY</string>
+
+	<string name="navigation_drawer_open">Open navigation drawer</string>
+	<string name="navigation_drawer_close">Close navigation drawer</string>
+	<string name="notification_title">notification_title</string>
+	<string name="notification_message">notification_message</string>
+
+	<string name="menu_map">MAP</string>
+	<string name="menu_history">HISTORY</string>
+	<string name="menu_sign_out">SIGN OUT</string>
+
+
+	<string name="sign_in">SIGN IN</string>
+	<string name="register_new_user">Register new user</string>
+	<string name="wrong_address_or_password">wrong address or password</string>
+	<string name="password">Password</string>
+	<string name="e_mail_adress">E-mail adress</string>
+	<string name="enter_valid_email_address">Enter valid Email address</string>
+	<string name="test_test_password">test Test password</string>
+	<string name="register">REGISTER</string>
+	<string name="nav_header_desc">nav_header_desc</string>
+	<string name="nav_header_title">nav_header_title</string>
+
+
+</resources>

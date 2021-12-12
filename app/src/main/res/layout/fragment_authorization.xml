@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+
+
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginStart="50dp"
+		android:layout_marginTop="100dp"
+		android:layout_marginEnd="50dp"
+		android:layout_marginBottom="150dp"
+		tools:context=".Screens.AuthorizationFragment">
+
+		<TextView
+			android:id="@+id/tvEnterEmail"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/e_mail_adress"
+			app:layout_constraintBottom_toTopOf="@+id/etMail"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<EditText
+			android:id="@+id/etMail"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toTopOf="@+id/tvHelpEmail"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tvEnterEmail" />
+
+		<TextView
+			android:id="@+id/tvHelpEmail"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/wrong_address_or_password"
+			android:textColor="@color/red"
+			android:visibility="gone"
+			app:layout_constraintBottom_toTopOf="@+id/tvEnterPass"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/etMail" />
+
+		<TextView
+			android:id="@+id/tvEnterPass"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="15dp"
+			android:text="@string/password"
+			app:layout_constraintBottom_toTopOf="@+id/etPassword"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tvHelpEmail" />
+
+		<EditText
+			android:id="@+id/etPassword"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:layout_constraintBottom_toTopOf="@+id/tvHelpPassword"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tvEnterPass" />
+
+		<TextView
+			android:id="@+id/tvHelpPassword"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/wrong_address_or_password"
+			android:textColor="@color/red"
+			android:visibility="gone"
+			app:layout_constraintBottom_toTopOf="@+id/btnSignIn"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+
+		<Button
+			android:id="@+id/btnSignIn"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="50dp"
+			android:background="@drawable/rounded_button"
+			android:text="@string/sign_in"
+			app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/tvHelpPassword" />
+
+		<Button
+			android:id="@+id/btnRegister"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginTop="30dp"
+			android:background="?android:attr/selectableItemBackground"
+			android:text="@string/register_new_user"
+			android:textColor="@color/black"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintLeft_toLeftOf="parent"
+			app:layout_constraintRight_toRightOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
+
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+	<!--android:onClick="@{()->model_auth.authButtonClick()}"-->
