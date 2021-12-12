@@ -25,7 +25,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
@@ -41,9 +44,9 @@ public class HistoryFragment extends Fragment implements OnMapReadyCallback {
     EditText currentDateTime;
     FragmentHistoryBinding binding;
     SupportMapFragment historyFragment;
-
+    Marker locationMarker;
     Polyline polyline1 = null;
-
+    List<LatLng> track;
     public HistoryFragment() {
         super(R.layout.fragment_history);
     }
@@ -134,13 +137,12 @@ public class HistoryFragment extends Fragment implements OnMapReadyCallback {
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
 
-        if (polyline1 != null)
-            polyline1.remove();
+      googleMap.clear();
 
         List<Point> listPoints = App.getInstance().getDatabase().getPointDao().getAllPointsByDate(date, db.getAuthUserDao().getIdAuthUser());
 
         if (listPoints.size() > 0) {
-            List<LatLng> track = new ArrayList<LatLng>();
+          track = new ArrayList<LatLng>();
             for (Point point : listPoints) {
                 track.add(new LatLng(point.latitude, point.longitude));
             }
@@ -153,8 +155,20 @@ public class HistoryFragment extends Fragment implements OnMapReadyCallback {
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
                     new LatLng(track.get(0).latitude, track.get(0).longitude), 12);
 
+            setMarkerOptions(0,120);
+            setMarkerOptions(0,240);
+
             googleMap.animateCamera(cameraUpdate);
         }
+
+    }
+    public void setMarkerOptions(int num,float color)
+    {
+        MarkerOptions markerOptions2 = new MarkerOptions()
+                .position(new LatLng(track.get(num).latitude,track.get(num).longitude))
+                .icon(BitmapDescriptorFactory.defaultMarker(	color));
+
+        this.locationMarker = this.googleMap.addMarker(markerOptions2);
 
     }
 

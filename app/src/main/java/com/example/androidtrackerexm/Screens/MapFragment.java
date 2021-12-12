@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -39,6 +40,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -55,7 +59,7 @@ public class MapFragment extends Fragment
     FragmentMapBinding binding;
     GoogleMap googleMap;
     Marker locationMarker;
-
+    Circle circle;
     LocationManager locationManager;
 
     LocationCallback locationCallback;
@@ -116,15 +120,17 @@ public class MapFragment extends Fragment
             return;
         }
 
-        if (this.locationMarker == null) {
-            MarkerOptions markerOptions = new MarkerOptions()
-                    .position(new LatLng(location.getLatitude(), location.getLongitude()))
-                    .title("My current position");
+        if (this.circle == null) {
+           circle = googleMap.addCircle(new CircleOptions()
+                    .center(new LatLng(location.getLatitude(), location.getLongitude()))
+                    .radius(300)
+                    .strokeColor(Color.BLACK)
+                    .fillColor(Color.RED));
 
-            this.locationMarker = this.googleMap.addMarker(markerOptions);
         } else {
-            this.locationMarker.setPosition(new LatLng(location.getLatitude(), location.getLongitude()));
-            saveLocationPoints(locationMarker);
+            circle.setCenter(new LatLng(location.getLatitude(), location.getLongitude()));
+
+            saveLocationPoints(circle);
         }
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
@@ -134,14 +140,15 @@ public class MapFragment extends Fragment
         googleMap.animateCamera(cameraUpdate);
     }
 
-    public void saveLocationPoints(Marker marker) {
+    public void saveLocationPoints(Circle circle) {
 
         Point point = new Point();
         //для эмулятора тест трека
         //   testPoint += 1;
-        point.latitude = marker.getPosition().latitude;
-        point.longitude = marker.getPosition().longitude;
-        //  point.longitude = marker.getPosition().longitude + testPoint;
+        point.latitude =circle.getCenter().latitude;
+
+        point.longitude = circle.getCenter().longitude;
+
         String date = DateUtils.formatDateTime(getActivity(),
                 Calendar.getInstance().getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR);
