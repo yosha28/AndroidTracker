@@ -156,7 +156,7 @@ public class HistoryFragment extends Fragment implements OnMapReadyCallback {
                     new LatLng(track.get(0).latitude, track.get(0).longitude), 12);
 
             setMarkerOptions(0,120);
-            setMarkerOptions(0,240);
+            setMarkerOptions(track.size()-1,240);
 
             googleMap.animateCamera(cameraUpdate);
         }

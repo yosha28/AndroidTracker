@@ -123,9 +123,10 @@ public class MapFragment extends Fragment
         if (this.circle == null) {
            circle = googleMap.addCircle(new CircleOptions()
                     .center(new LatLng(location.getLatitude(), location.getLongitude()))
-                    .radius(300)
+                    .radius(100)
                     .strokeColor(Color.BLACK)
                     .fillColor(Color.RED));
+
 
         } else {
             circle.setCenter(new LatLng(location.getLatitude(), location.getLongitude()));
@@ -135,7 +136,7 @@ public class MapFragment extends Fragment
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
                 new LatLng(location.getLatitude(), location.getLongitude()),
-                12
+                14
         );
         googleMap.animateCamera(cameraUpdate);
     }
