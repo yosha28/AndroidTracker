@@ -1,58 +1,40 @@
-package com.example.androidtrackerexm.Screens;
+package com.example.androidtrackerexm;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.ActionMenuItem;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.PermissionChecker;
-import androidx.core.view.GravityCompat;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import android.Manifest;
-import android.app.DatePickerDialog;
-import android.app.FragmentManager;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.ImageDecoder;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.androidtrackerexm.App;
-import com.example.androidtrackerexm.LocationHelpers.LocationManager;
 import com.example.androidtrackerexm.LocationHelpers.LocationService;
 import com.example.androidtrackerexm.Models.AppDataBase;
 import com.example.androidtrackerexm.Models.User;
-import com.example.androidtrackerexm.R;
 import com.example.androidtrackerexm.databinding.ActivityMainBinding;
-import com.google.android.gms.location.LocationCallback;
-import com.google.android.gms.location.LocationResult;
-import com.google.android.gms.maps.SupportMapFragment;
+import com.example.androidtrackerexm.databinding.NavHeaderMainBinding;
+import com.example.androidtrackerexm.helpers.UserRepository;
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,10 +45,13 @@ public class MainActivity extends AppCompatActivity {
     View headerNav;
     TextView textViewNav;
     ImageView imageView;
-    AppDataBase db;
-    User tmpUser ;
+  //  AppDataBase db;
+    User tmpUser;
     NavController navController;
     AlertDialog alertDialog;
+
+    MainActivityViewModel viewModel;
+
     public static final String TAG = MainActivity.class.getCanonicalName();
 
 
@@ -75,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         Log.d(TAG, "Create Activity!!!!!!!!!!!!!!!!!!!!!!!!!!");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -82,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.appBarMain.toolbar);
 
         DrawerLayout drawer = binding.drawerLayout;
-
         NavigationView navigationView = binding.navView;
-        db = App.getInstance().getDatabase();
+
+      //  db = App.getInstance().getDatabase();
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.mapFragment,
@@ -95,23 +81,39 @@ public class MainActivity extends AppCompatActivity {
 
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        navController = navHostFragment.getNavController();
+       navController = navHostFragment.getNavController();
+
+       // navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        ViewModelProvider.AndroidViewModelFactory factory = new ViewModelProvider.AndroidViewModelFactory(this.getApplication());
+        viewModel = new ViewModelProvider(this,factory).get(MainActivityViewModel.class);
+
+        binding.setModelMain(viewModel);
+        binding.setLifecycleOwner(this);
+        binding.appBarMain.setBarModel(viewModel);
 
         headerNav = binding.navView.getHeaderView(0);
         imageView = headerNav.findViewById(R.id.imageView);
         textViewNav = headerNav.findViewById(R.id.tvNHMail);
 
-        imageView.setOnClickListener(new View.OnClickListener() {
+        NavHeaderMainBinding headerMenuBinding = DataBindingUtil.inflate(getLayoutInflater(),
+                R.layout.nav_header_main,
+                binding.navView,
+                false);
+
+        headerMenuBinding.setMainModel(viewModel);
+
+
+     /*   imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 tmpUser = db.getUserDao().getAuthUser(db.getAuthUserDao().getIdAuthUser());
-                pickAvatarFromGalary();
-
+               // pickAvatarFromGalary();
+selectAvatar();
                 ByteArrayOutputStream byteArrayAvatar = new ByteArrayOutputStream();
                 if(userAvatar!=null)
                 {
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
             }
-        });
+        });*/
 
     }
 
@@ -152,7 +154,8 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    void pickAvatarFromGalary() {
+    //  void pickAvatarFromGalary() {
+    public void selectAvatar(View view) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -172,8 +175,9 @@ public class MainActivity extends AppCompatActivity {
 
                 try {
                     userAvatar = ImageDecoder.decodeBitmap(source);
-                    imageView.setImageBitmap(userAvatar);
-                    Log.d("pick-photo", userAvatar.getByteCount() + "");
+                    viewModel.setGlobalAvatar(userAvatar);
+                    //  imageView.setImageBitmap(userAvatar);
+                    //   Log.d("pick-photo", userAvatar.getByteCount() + "");
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -181,7 +185,8 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 try {
                     userAvatar = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    imageView.setImageBitmap(userAvatar);
+                    //  imageView.setImageBitmap(userAvatar);
+                    viewModel.setGlobalAvatar(userAvatar);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -198,8 +203,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                db.getAuthUserDao().deleteAll();
-
+             //   db.getAuthUserDao().deleteAll();
+viewModel.userRepository.cleareAuthUser();
                 Intent intent = new Intent(getApplicationContext(), LocationService.class);
                 stopService(intent);
 
@@ -221,6 +226,7 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
     @Override
     protected void onDestroy() {
         Log.d(TAG, "Destroy Activity!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -228,5 +234,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
     }
+
 
 }

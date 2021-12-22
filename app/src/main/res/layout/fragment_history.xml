@@ -7,7 +7,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:background="@color/white"
-		tools:context=".Screens.MapFragment">
+		tools:context=".screens.MapFragment">
 
 		<fragment
 			android:id="@+id/map"
@@ -17,7 +17,7 @@
 			app:layout_constraintLeft_toLeftOf="parent"
 			app:layout_constraintRight_toRightOf="parent"
 			app:layout_constraintBottom_toBottomOf="parent"
-			tools:context=".Screens.MainActivity"/>
+			tools:context=".MainActivity"/>
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
 

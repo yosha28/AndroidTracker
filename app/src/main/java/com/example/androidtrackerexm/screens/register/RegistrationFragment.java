@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.Screens;
+package com.example.androidtrackerexm.screens.register;
 
 import android.os.Bundle;
 
@@ -7,8 +7,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -1,7 +1,6 @@
-package com.example.androidtrackerexm.Screens;
+package com.example.androidtrackerexm.screens;
 
 import android.app.DatePickerDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
