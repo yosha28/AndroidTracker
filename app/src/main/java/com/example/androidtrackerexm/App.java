@@ -2,7 +2,6 @@ package com.example.androidtrackerexm;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.Intent;
 import android.location.Location;
 
 import androidx.annotation.Nullable;
@@ -11,7 +10,7 @@ import androidx.room.Room;
 
 import com.example.androidtrackerexm.Models.AppDataBase;
 import com.example.androidtrackerexm.Models.User;
-import com.example.androidtrackerexm.Screens.MapFragment;
+import com.example.androidtrackerexm.helpers.UserRepository;
 
 import java.util.concurrent.TimeUnit;
 
@@ -21,6 +20,7 @@ public class App extends Application {
 
     public static App instance=null;
     public static AppDataBase database;
+    UserRepository userRepository;
     @Nullable
     private User user;
     public PublishSubject<Location> locationPublishSubject;
@@ -37,8 +37,8 @@ public class App extends Application {
                 .setAutoCloseTimeout(1, TimeUnit.HOURS)
                 .allowMainThreadQueries()
                 .build();
-
-       user = database.getUserDao().getAuthUser(database.getAuthUserDao().getIdAuthUser());
+        userRepository = UserRepository.getInstance(database);
+     //  user = database.getUserDao().getAuthUser(database.getAuthUserDao().getIdAuthUser());
 
     }
     public static App getInstance() {
@@ -48,9 +48,11 @@ public class App extends Application {
     public  AppDataBase getDatabase() {
         return database;
     }
-
-    @Nullable
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+   /* @Nullable
     public User getUser() {
         return user;
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.Screens;
+package com.example.androidtrackerexm.screens.login;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.androidtrackerexm.App;
+import com.example.androidtrackerexm.MainActivityViewModel;
 import com.example.androidtrackerexm.Models.AppDataBase;
 import com.example.androidtrackerexm.Models.AuthUser;
 import com.example.androidtrackerexm.Models.User;
@@ -21,12 +22,13 @@ import com.example.androidtrackerexm.R;
 import com.example.androidtrackerexm.databinding.FragmentAuthorizationBinding;
 
 
-public class AuthorizationFragment extends Fragment {
+public class LoginFragment extends Fragment {
 
     FragmentAuthorizationBinding binding;
     AppDataBase db;
+    MainActivityViewModel mainViewModel;
 
-    public AuthorizationFragment() {
+    public LoginFragment() {
         super(R.layout.fragment_authorization);
     }
 
@@ -40,6 +42,8 @@ public class AuthorizationFragment extends Fragment {
         getActivity().findViewById(R.id.blockCalendar).setVisibility(View.GONE);
 
         binding = FragmentAuthorizationBinding.bind(view);
+
+        mainViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
         db = App.getInstance().getDatabase();
 
 
@@ -72,6 +76,7 @@ public class AuthorizationFragment extends Fragment {
     public void getAuthUser() {
         User tmpUser = db.getUserDao().getAuthUser(db.getAuthUserDao().getIdAuthUser());
         if (tmpUser != null) {
+            mainViewModel.setCurrentUser(tmpUser);
             goToMapScreen();
         }
     }
@@ -83,6 +88,7 @@ public class AuthorizationFragment extends Fragment {
                 AuthUser authUser = new AuthUser();
                 authUser.idUser = db.getUserDao().getId(binding.etMail.getText().toString());
                 db.getAuthUserDao().insert(authUser);
+                mainViewModel.setCurrentUser(db.getUserDao().getAuthUser( authUser.idUser));
                 return true;
             }
         }

@@ -27,7 +27,7 @@
 			android:value="@string/google_maps_key" />
 
 		<activity
-			android:name=".Screens.MainActivity"
+			android:name=".MainActivity"
 			android:exported="true"
 			android:label="AndroidTrackerEXM"
 			android:theme="@style/Theme.AndroidTrackerEXM.NoActionBar">

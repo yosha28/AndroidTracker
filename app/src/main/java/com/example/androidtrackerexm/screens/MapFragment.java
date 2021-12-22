@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.Screens;
+package com.example.androidtrackerexm.screens;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.example.androidtrackerexm.App;
 import com.example.androidtrackerexm.LocationHelpers.LocationManager;
 import com.example.androidtrackerexm.LocationHelpers.LocationService;
+import com.example.androidtrackerexm.MainActivity;
 import com.example.androidtrackerexm.Models.AppDataBase;
 import com.example.androidtrackerexm.Models.Point;
 import com.example.androidtrackerexm.Models.User;
@@ -40,12 +41,10 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Calendar;

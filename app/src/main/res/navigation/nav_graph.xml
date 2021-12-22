@@ -7,7 +7,7 @@
 
 	<fragment
 		android:id="@+id/authorizationFragment"
-		android:name="com.example.androidtrackerexm.Screens.AuthorizationFragment"
+		android:name="com.example.androidtrackerexm.screens.login.LoginFragment"
 		android:label="fragment_authorization"
 		tools:layout="@layout/fragment_authorization" >
 		<action
@@ -19,7 +19,7 @@
 	</fragment>
 	<fragment
 		android:id="@+id/registrationFragment"
-		android:name="com.example.androidtrackerexm.Screens.RegistrationFragment"
+		android:name="com.example.androidtrackerexm.screens.register.RegistrationFragment"
 		android:label="fragment_registration"
 		tools:layout="@layout/fragment_registration" >
 		<action
@@ -28,7 +28,7 @@
 	</fragment>
 	<fragment
 		android:id="@+id/mapFragment"
-		android:name="com.example.androidtrackerexm.Screens.MapFragment"
+		android:name="com.example.androidtrackerexm.screens.MapFragment"
 		android:label="Map" >
 		<action
 			android:id="@+id/action_mapFragment_to_historyFragment"
@@ -39,7 +39,7 @@
 	</fragment>
 	<fragment
 		android:id="@+id/historyFragment"
-		android:name="com.example.androidtrackerexm.Screens.HistoryFragment"
+		android:name="com.example.androidtrackerexm.screens.HistoryFragment"
 		android:label="History"
 		tools:layout="@layout/fragment_history" >
 		<action

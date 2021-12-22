@@ -10,7 +10,7 @@
 		android:layout_marginTop="100dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="210dp"
-		tools:context=".Screens.RegistrationFragment">
+		tools:context=".screens.register.RegistrationFragment">
 
 		<TextView
 			android:id="@+id/tvEnterEmail"

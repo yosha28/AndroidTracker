@@ -12,7 +12,7 @@
 		android:layout_marginTop="100dp"
 		android:layout_marginEnd="50dp"
 		android:layout_marginBottom="150dp"
-		tools:context=".Screens.AuthorizationFragment">
+		tools:context=".screens.login.LoginFragment">
 
 		<TextView
 			android:id="@+id/tvEnterEmail"
