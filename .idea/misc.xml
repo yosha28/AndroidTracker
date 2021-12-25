@@ -16,12 +16,14 @@
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/drawable/ic_twotone_keyboard_arrow_right_24.xml" value="0.1" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/drawable/rounded_button.xml" value="0.1" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout-land/fragment_authorization.xml" value="0.146875" />
+        <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout-land/fragment_login.xml" value="0.21781305114638447" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/activity_main.xml" value="0.21529888551165147" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/app_bar_main.xml" value="0.29653679653679654" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/content_fragment_map.xml" value="0.12462006079027356" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/content_main.xml" value="0.12462006079027356" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/fragment_authorization.xml" value="0.2857142857142857" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/fragment_history.xml" value="0.12462006079027356" />
+        <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/fragment_login.xml" value="0.21529888551165147" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/fragment_map.xml" value="0.12462006079027356" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/fragment_registration.xml" value="0.12462006079027356" />
         <entry key="..\:/AndroidTrackerEXM/app/src/main/res/layout/nav_header_main.xml" value="0.13541666666666666" />

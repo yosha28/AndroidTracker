@@ -9,6 +9,7 @@
 			type="com.example.androidtrackerexm.MainActivityViewModel" />
 		<import type="com.example.androidtrackerexm.MainActivityViewModel"/>
 	</data>
+
 	<androidx.drawerlayout.widget.DrawerLayout
 
 		android:id="@+id/drawer_layout"
@@ -30,10 +31,11 @@
 			android:layout_height="match_parent"
 			android:layout_gravity="start"
 			android:fitsSystemWindows="true"
-			app:headerLayout="@layout/nav_header_main"
+
 			app:menu="@menu/activity_main_drawer" />
 
 	</androidx.drawerlayout.widget.DrawerLayout>
 </layout>
 
-	<!--app:headerLayout="@layout/nav_header_main"-->
+<!--
+	app:headerLayout="@layout/nav_header_main"-->

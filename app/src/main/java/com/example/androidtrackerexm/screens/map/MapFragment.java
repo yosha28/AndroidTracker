@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.screens;
+package com.example.androidtrackerexm.screens.map;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -25,14 +25,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.androidtrackerexm.App;
-import com.example.androidtrackerexm.LocationHelpers.LocationManager;
-import com.example.androidtrackerexm.LocationHelpers.LocationService;
+import com.example.androidtrackerexm.locationHelpers.LocationManager;
+import com.example.androidtrackerexm.locationHelpers.LocationService;
 import com.example.androidtrackerexm.MainActivity;
-import com.example.androidtrackerexm.Models.AppDataBase;
-import com.example.androidtrackerexm.Models.Point;
-import com.example.androidtrackerexm.Models.User;
+import com.example.androidtrackerexm.models.AppDataBase;
+import com.example.androidtrackerexm.models.Point;
+import com.example.androidtrackerexm.models.User;
 import com.example.androidtrackerexm.R;
-//import com.example.androidtrackerexm.databinding.FragmentMapBinding;
 import com.example.androidtrackerexm.databinding.FragmentMapBinding;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationResult;
@@ -54,8 +53,8 @@ public class MapFragment extends Fragment
         implements OnMapReadyCallback {
 
     public static final String TAG = MainActivity.class.getCanonicalName();
+FragmentMapBinding binding;
 
-    FragmentMapBinding binding;
     GoogleMap googleMap;
     Marker locationMarker;
     Circle circle;
@@ -77,7 +76,7 @@ public class MapFragment extends Fragment
         super.onViewCreated(view, savedInstanceState);
         db = App.getInstance().getDatabase();
         startLocationService();
-        setProfileNavMenu();
+      //  setProfileNavMenu();
 
     }
 
@@ -225,16 +224,16 @@ public class MapFragment extends Fragment
     public void setProfileNavMenu() {
         NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
         headerNav = navigationView.getHeaderView(0);
-        imageView = headerNav.findViewById(R.id.imageView);
+     //   imageView = headerNav.findViewById(R.id.imageView);
         textViewNav = headerNav.findViewById(R.id.tvNHMail);
 
         User tmpUser = db.getUserDao().getAuthUser(db.getAuthUserDao().getIdAuthUser());
         //   User tmpUser=App.getInstance().getUser();
-        if (tmpUser.avatar != null)
+     /*   if (tmpUser.avatar != null)
             imageView.setImageBitmap(BitmapFactory.decodeByteArray(tmpUser.avatar, 0, tmpUser.avatar.length));
         else {
 
-        }
+        }*/
         textViewNav.setText(tmpUser.email);
     }
 

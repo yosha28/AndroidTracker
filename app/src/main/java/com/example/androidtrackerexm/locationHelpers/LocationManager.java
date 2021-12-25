@@ -1,11 +1,10 @@
-package com.example.androidtrackerexm.LocationHelpers;
+package com.example.androidtrackerexm.locationHelpers;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleOwner;
 
 import com.google.android.gms.location.FusedLocationProviderClient;

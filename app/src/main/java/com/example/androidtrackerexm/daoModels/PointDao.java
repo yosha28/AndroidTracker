@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.DaoModels;
+package com.example.androidtrackerexm.daoModels;
 
 import androidx.annotation.NonNull;
 import androidx.room.Dao;
@@ -8,7 +8,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.example.androidtrackerexm.Models.Point;
+import com.example.androidtrackerexm.models.Point;
 
 import java.util.List;
 @Dao

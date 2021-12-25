@@ -6,6 +6,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -27,12 +28,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.androidtrackerexm.LocationHelpers.LocationService;
-import com.example.androidtrackerexm.Models.AppDataBase;
-import com.example.androidtrackerexm.Models.User;
+import com.example.androidtrackerexm.locationHelpers.LocationService;
+import com.example.androidtrackerexm.models.User;
 import com.example.androidtrackerexm.databinding.ActivityMainBinding;
 import com.example.androidtrackerexm.databinding.NavHeaderMainBinding;
-import com.example.androidtrackerexm.helpers.UserRepository;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
@@ -42,11 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     Bitmap userAvatar;
-    View headerNav;
-    TextView textViewNav;
-    ImageView imageView;
-  //  AppDataBase db;
-    User tmpUser;
+
     NavController navController;
     AlertDialog alertDialog;
 
@@ -70,63 +65,34 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
 
-      //  db = App.getInstance().getDatabase();
-
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.mapFragment,
                 R.id.historyFragment,
-                R.id.authorizationFragment)
+                R.id.loginFragment)
                 .setOpenableLayout(drawer)
                 .build();
 
 
         NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-       navController = navHostFragment.getNavController();
-
-       // navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = navHostFragment.getNavController();
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        ViewModelProvider.AndroidViewModelFactory factory = new ViewModelProvider.AndroidViewModelFactory(this.getApplication());
-        viewModel = new ViewModelProvider(this,factory).get(MainActivityViewModel.class);
+
+        viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
 
         binding.setModelMain(viewModel);
         binding.setLifecycleOwner(this);
         binding.appBarMain.setBarModel(viewModel);
 
-        headerNav = binding.navView.getHeaderView(0);
-        imageView = headerNav.findViewById(R.id.imageView);
-        textViewNav = headerNav.findViewById(R.id.tvNHMail);
-
         NavHeaderMainBinding headerMenuBinding = DataBindingUtil.inflate(getLayoutInflater(),
                 R.layout.nav_header_main,
                 binding.navView,
                 false);
-
+        binding.navView.addHeaderView(headerMenuBinding.getRoot());
         headerMenuBinding.setMainModel(viewModel);
 
-
-     /*   imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                tmpUser = db.getUserDao().getAuthUser(db.getAuthUserDao().getIdAuthUser());
-               // pickAvatarFromGalary();
-selectAvatar();
-                ByteArrayOutputStream byteArrayAvatar = new ByteArrayOutputStream();
-                if(userAvatar!=null)
-                {
-                    userAvatar.compress(Bitmap.CompressFormat.JPEG, 20, byteArrayAvatar);
-                    tmpUser.avatar=byteArrayAvatar.toByteArray();
-
-               db.getUserDao().update(tmpUser);
-
-                    imageView.setImageBitmap(BitmapFactory.decodeByteArray(tmpUser.avatar, 0, tmpUser.avatar.length));
-                }
-
-            }
-        });*/
 
     }
 
@@ -203,8 +169,8 @@ selectAvatar();
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-             //   db.getAuthUserDao().deleteAll();
-viewModel.userRepository.cleareAuthUser();
+                viewModel.loggin.setValue(false);
+                viewModel.userRepository.clearAuthUser();
                 Intent intent = new Intent(getApplicationContext(), LocationService.class);
                 stopService(intent);
 

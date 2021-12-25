@@ -1,12 +1,7 @@
-package com.example.androidtrackerexm.Models;
+package com.example.androidtrackerexm.models;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
-
-import com.google.android.gms.maps.model.LatLng;
-
-import java.sql.Date;
 
 @Entity(tableName = "points", primaryKeys = {"latitude", "longitude"})
 public class Point {
