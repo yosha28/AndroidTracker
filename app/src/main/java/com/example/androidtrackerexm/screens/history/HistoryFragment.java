@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.screens;
+package com.example.androidtrackerexm.screens.history;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -15,8 +15,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.example.androidtrackerexm.App;
-import com.example.androidtrackerexm.Models.AppDataBase;
-import com.example.androidtrackerexm.Models.Point;
+import com.example.androidtrackerexm.models.AppDataBase;
+import com.example.androidtrackerexm.models.Point;
 import com.example.androidtrackerexm.R;
 import com.example.androidtrackerexm.databinding.FragmentHistoryBinding;
 import com.google.android.gms.maps.CameraUpdate;

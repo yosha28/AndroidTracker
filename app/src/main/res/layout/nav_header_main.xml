@@ -2,14 +2,15 @@
 <layout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
+
 	<data>
 		<variable
 			name="mainModel"
 			type="MainActivityViewModel" />
 		<import type="com.example.androidtrackerexm.MainActivityViewModel"/>
 	</data>
-<androidx.constraintlayout.widget.ConstraintLayout
 
+<androidx.constraintlayout.widget.ConstraintLayout
 	android:layout_width="match_parent"
 	android:layout_height="180dp"
 	android:background="#5379EA"
@@ -30,7 +31,6 @@
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
 		app:layout_constraintBottom_toTopOf="@+id/tvNHMail"
-
 		android:onClick="selectAvatar"
 		 />
 
@@ -38,17 +38,15 @@
 		android:id="@+id/tvNHMail"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:text="@string/nav_header_title"
 		android:textStyle="bold"
 		app:layout_constraintTop_toBottomOf="@+id/imageView"
 		app:layout_constraintLeft_toLeftOf="parent"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintRight_toRightOf="parent"
+		android:text="@{mainModel.userLogging.email}"
 		android:textAppearance="@style/TextAppearance.AppCompat.Body1"
 		/>
 
-	 />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
-	<!--app:setBitmap="@{mainModel.userObserve.avatar}"-->

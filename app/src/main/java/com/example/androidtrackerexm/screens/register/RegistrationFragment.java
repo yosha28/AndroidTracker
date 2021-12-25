@@ -13,9 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.androidtrackerexm.App;
-import com.example.androidtrackerexm.Models.AppDataBase;
-import com.example.androidtrackerexm.Models.AuthUser;
-import com.example.androidtrackerexm.Models.User;
+import com.example.androidtrackerexm.models.AppDataBase;
+import com.example.androidtrackerexm.models.AuthUser;
+import com.example.androidtrackerexm.models.User;
 import com.example.androidtrackerexm.R;
 import com.example.androidtrackerexm.databinding.FragmentRegistrationBinding;
 

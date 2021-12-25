@@ -1,6 +1,5 @@
-package com.example.androidtrackerexm.Models;
+package com.example.androidtrackerexm.models;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 

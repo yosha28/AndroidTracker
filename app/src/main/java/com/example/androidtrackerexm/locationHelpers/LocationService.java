@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.LocationHelpers;
+package com.example.androidtrackerexm.locationHelpers;
 
 import android.annotation.SuppressLint;
 import android.app.Notification;

@@ -12,7 +12,7 @@
 			android:id="@+id/historyFragment"
 			android:title="@string/menu_history" />
 		<item
-			android:id="@+id/authorizationFragment"
+			android:id="@+id/loginFragment"
 			android:title="@string/menu_sign_out"
 			android:onClick="onSignOutClick"/>
 	</group>

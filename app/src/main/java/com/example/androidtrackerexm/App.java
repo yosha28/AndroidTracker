@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.room.Room;
 
 
-import com.example.androidtrackerexm.Models.AppDataBase;
-import com.example.androidtrackerexm.Models.User;
+import com.example.androidtrackerexm.models.AppDataBase;
+import com.example.androidtrackerexm.models.User;
 import com.example.androidtrackerexm.helpers.UserRepository;
 
 import java.util.concurrent.TimeUnit;

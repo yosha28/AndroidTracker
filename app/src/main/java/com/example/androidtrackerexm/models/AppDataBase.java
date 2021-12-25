@@ -1,4 +1,4 @@
-package com.example.androidtrackerexm.Models;
+package com.example.androidtrackerexm.models;
 
 import android.annotation.SuppressLint;
 import android.util.Log;
@@ -9,9 +9,9 @@ import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import com.example.androidtrackerexm.DaoModels.AuthUserDao;
-import com.example.androidtrackerexm.DaoModels.PointDao;
-import com.example.androidtrackerexm.DaoModels.UserDao;
+import com.example.androidtrackerexm.daoModels.AuthUserDao;
+import com.example.androidtrackerexm.daoModels.PointDao;
+import com.example.androidtrackerexm.daoModels.UserDao;
 
 @SuppressLint("RestrictedApi")
 @Database(entities = {User.class, Point.class,AuthUser.class}, version = 1)
